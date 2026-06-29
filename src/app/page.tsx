@@ -4,11 +4,11 @@ import { Check, X, Star, ArrowRight, Zap, Clock, Rocket, Users, Briefcase, BookO
 
 /* ─── DESIGN TOKENS ─── */
 const C = {
-  neon:    "#A6FF00",
-  neonDim: "rgba(166,255,0,0.12)",
-  neonBorder: "rgba(166,255,0,0.25)",
-  bg:      "#050505",
-  bg2:     "#090909",
+  neon:    "#7CFF00",
+  neonDim: "rgba(124,255,0,0.12)",
+  neonBorder: "rgba(124,255,0,0.25)",
+  bg:      "#0B0B0B",
+  bg2:     "#0E0E0E",
   card:    "#0e0e0e",
   cardHover: "#111111",
   border:  "#1e1e1e",
@@ -127,7 +127,7 @@ const ICONS: Record<string, (s?: number) => React.ReactNode> = {
   "Celery": (s=38) => (
     <svg width={s} height={s} viewBox="0 0 128 128"><circle cx="64" cy="64" r="60" fill="#37814a"/><text x="64" y="84" textAnchor="middle" fill="white" fontSize="56" fontWeight="900" fontFamily="system-ui">C</text></svg>
   ),
-  "C Lang": (s=38) => (
+  "C": (s=38) => (
     <svg width={s} height={s} viewBox="0 0 128 128">
       <path fill="#659AD2" d="M115 30.7L67 2.9A6 6 0 0064 2.2a6 6 0 00-3 .7L13 30.7A6 6 0 0010 36v56c0 1.1.2 2.4 1 3.5L118 33.5a6 6 0 00-3-2.8z"/>
       <path fill="#03599C" d="M10.7 95.3c.5.8 1.2 1.5 1.9 1.9l48.2 27.9A6 6 0 0064 125.8a6 6 0 003-.7l48-27.9A6 6 0 00118 91.7V36c0-.9-.1-1.9-.6-2.8L10.7 95.3z"/>
@@ -156,9 +156,28 @@ const ICONS: Record<string, (s?: number) => React.ReactNode> = {
   ),
 };
 
+/* ─── AI TOOL ICON SLUGS for cdn.simpleicons.org ─── */
+const AI_ICON_SLUGS: Record<string, string> = {
+  "ChatGPT": "openai",
+  "Open Claw": "openaigym",
+  "Claude Code": "anthropic",
+  "Bolt": "lightning",
+  "Claude": "anthropic",
+  "Gemini": "googlegemini",
+  "Loveable": "heart",
+  "Make": "make",
+  "n8n": "n8n",
+  "OpenAI": "openai",
+  "Zapier": "zapier",
+  "Vercel": "vercel",
+  "GitHub": "github",
+  "Copilot": "githubcopilot",
+  "DALL·E": "openai",
+};
+
 /* ─── DATA ─── */
 const frontendTechs = ["Next.js","React","Tailwind","Redux","Firebase","Git","Vercel","Responsive"];
-const backendTechs  = ["Python","Django","FastAPI","PostgreSQL","Docker","AWS","Redis","Celery","C Lang","Bootstrap","S3","EC2"];
+const backendTechs  = ["Python","Django","FastAPI","PostgreSQL","Docker","AWS","Redis","Celery","C","Bootstrap","S3","EC2"];
 const frontendOutcomes = ["Build Production UI","Authentication Flows","Firestore & DB Design","File Storage Handling","Continuous Deployment","Clean Folder Structure","Reusable Components & HOC","Advanced Git Workflow"];
 const backendOutcomes  = ["Scalable REST APIs","JWT Authentication","Complex CRUD & ORM","S3 Image Uploads","Docker Containerization","Redis Caching Strategy","Async Tasks with Celery","AWS EC2 Deployment"];
 const projects = [
@@ -189,7 +208,7 @@ const aiTools = [
 function CheckItem({text}:{text:string}) {
   return (
     <div style={{display:"flex",alignItems:"center",gap:10,padding:"6px 0"}}>
-      <span style={{width:20,height:20,borderRadius:"50%",background:"rgba(166,255,0,0.12)",border:"1px solid rgba(166,255,0,0.3)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+      <span style={{width:20,height:20,borderRadius:"50%",background:"rgba(124,255,0,0.12)",border:"1px solid rgba(124,255,0,0.3)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
         <Check size={11} color={C.neon} strokeWidth={3}/>
       </span>
       <span style={{color:"#d1d5db",fontSize:14,lineHeight:1.4}}>{text}</span>
@@ -217,7 +236,7 @@ function StarItem({text}:{text:string}) {
 
 function SectionTag({icon:Icon,label}:{icon:React.ElementType,label:string}) {
   return (
-    <div style={{display:"inline-flex",alignItems:"center",gap:7,padding:"5px 14px",borderRadius:100,background:"rgba(166,255,0,0.07)",border:"1px solid rgba(166,255,0,0.18)",color:C.neon,fontSize:11,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:14}}>
+    <div style={{display:"inline-flex",alignItems:"center",gap:7,padding:"5px 14px",borderRadius:100,background:"rgba(124,255,0,0.07)",border:"1px solid rgba(124,255,0,0.18)",color:C.neon,fontSize:11,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:14}}>
       <Icon size={12}/>{label}
     </div>
   );
@@ -250,7 +269,7 @@ const cardNeonStyle: React.CSSProperties = {
   border: `1px solid ${C.neonBorder}`,
   borderRadius: 16,
   padding: 28,
-  boxShadow: "0 0 30px rgba(166,255,0,0.05), inset 0 0 20px rgba(166,255,0,0.02)",
+  boxShadow: "0 0 30px rgba(124,255,0,0.05), inset 0 0 20px rgba(124,255,0,0.02)",
 };
 const cardRedStyle: React.CSSProperties = {
   background: C.card,
@@ -268,22 +287,23 @@ export default function Home() {
       {/* ══════════ HERO ══════════ */}
       <section style={{minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"80px 24px",position:"relative",overflow:"hidden",textAlign:"center"}}>
         {/* Grid */}
-        <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(166,255,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(166,255,0,0.04) 1px,transparent 1px)",backgroundSize:"64px 64px",WebkitMaskImage:"radial-gradient(ellipse 75% 65% at 50% 50%,black 40%,transparent 100%)"}}/>
+        <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(124,255,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,255,0,0.04) 1px,transparent 1px)",backgroundSize:"64px 64px",WebkitMaskImage:"radial-gradient(ellipse 75% 65% at 50% 50%,black 40%,transparent 100%)"}}/>
         {/* Orb */}
-        <div style={{position:"absolute",width:700,height:700,top:-200,left:"50%",transform:"translateX(-50%)",borderRadius:"50%",background:"radial-gradient(circle,rgba(166,255,0,0.06),transparent 70%)",filter:"blur(40px)",pointerEvents:"none"}}/>
+        <div style={{position:"absolute",width:700,height:700,top:-200,left:"50%",transform:"translateX(-50%)",borderRadius:"50%",background:"radial-gradient(circle,rgba(124,255,0,0.06),transparent 70%)",filter:"blur(40px)",pointerEvents:"none"}}/>
 
         <div style={{position:"relative",zIndex:1,maxWidth:860,width:"100%"}}>
           {/* Badge */}
           <div className="fade-up" style={{display:"flex",justifyContent:"center",marginBottom:28}}>
-            <span style={{display:"inline-flex",alignItems:"center",gap:8,padding:"7px 18px",borderRadius:100,background:"rgba(166,255,0,0.08)",border:"1px solid rgba(166,255,0,0.25)",color:C.neon,fontSize:12,fontWeight:700,letterSpacing:"0.08em"}}>
+            <span style={{display:"inline-flex",alignItems:"center",gap:8,padding:"7px 18px",borderRadius:100,background:"rgba(124,255,0,0.08)",border:"1px solid rgba(124,255,0,0.25)",color:C.neon,fontSize:12,fontWeight:700,letterSpacing:"0.08em"}}>
               🚀 30 DAYS INTENSIVE PROGRAM &nbsp;|&nbsp; 15D Frontend • 15D Backend
             </span>
           </div>
 
-          {/* Heading */}
-          <h1 className="fade-up-1" style={{fontSize:"clamp(50px,9vw,100px)",fontWeight:900,lineHeight:0.9,letterSpacing:"-0.025em",marginBottom:24}}>
-            <span style={{color:"#fff",display:"block"}}>Full Stack + AI</span>
-            <span style={{display:"block",marginTop:8,color:C.neon,textShadow:"0 0 12px rgba(166,255,0,0.7),0 0 40px rgba(166,255,0,0.4),0 0 80px rgba(166,255,0,0.15)"}}>
+          {/* Heading — 3 stacked lines */}
+          <h1 className="fade-up-1 text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter" style={{ lineHeight: "1.1", letterSpacing: "-2.4px", color: "#fff", marginBottom: 24 }}>
+            Full Stack + AI
+            <br />
+            <span className="neon-text font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-neon to-[#a1ff4d]">
               Engineering Bootcamp
             </span>
           </h1>
@@ -297,8 +317,8 @@ export default function Home() {
             <span style={{color:C.neon}}>ONLY EXECUTION.</span>
           </p>
 
-          <div className="fade-up-3">
-            <a href="#curriculum" style={{display:"inline-flex",alignItems:"center",gap:10,padding:"14px 32px",background:C.neon,color:"#000",fontWeight:800,fontSize:16,borderRadius:12,textDecoration:"none",boxShadow:"0 0 30px rgba(166,255,0,0.3)",transition:"all 0.2s ease"}}>
+          <div className="fade-up-3 w-full px-4 sm:px-0">
+            <a href="#curriculum" className="w-full sm:w-auto justify-center inline-flex items-center" style={{gap:10,padding:"14px 32px",background:"#7CFF00",color:"#000",fontWeight:800,fontSize:16,borderRadius:12,textDecoration:"none",boxShadow:"0 0 30px rgba(124,255,0,0.3)",transition:"all 0.2s ease"}}>
               Apply Now <ArrowRight size={18} strokeWidth={3}/>
             </a>
           </div>
@@ -317,15 +337,14 @@ export default function Home() {
         <div style={{maxWidth:1100,margin:"0 auto"}}>
           <div style={{textAlign:"center",marginBottom:52}}>
             <SectionTag icon={Users} label="Who Can Join"/>
-            <h2 style={{fontSize:"clamp(30px,4vw,50px)",fontWeight:900,color:"#fff",marginBottom:10}}>Built for Builders</h2>
-            <p style={{color:C.textSub,fontSize:15}}>Prerequisites & what makes this bootcamp different.</p>
+            <h2 style={{fontSize:"clamp(30px,4vw,50px)",fontWeight:900,color:"#fff",marginBottom:10}}>Who Can Join?</h2>
           </div>
 
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))",gap:16}}>
             {/* Prerequisites card */}
             <div style={cardNeonStyle}>
               <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:20}}>
-                <div style={{width:40,height:40,borderRadius:10,background:"rgba(166,255,0,0.1)",border:"1px solid rgba(166,255,0,0.2)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                <div style={{width:40,height:40,borderRadius:10,background:"rgba(124,255,0,0.1)",border:"1px solid rgba(124,255,0,0.2)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
                   <Check size={20} color={C.neon}/>
                 </div>
                 <h3 style={{color:"#fff",fontWeight:700,fontSize:17}}>Prerequisites</h3>
@@ -333,7 +352,6 @@ export default function Home() {
               <CheckItem text="HTML, CSS Fundamentals"/>
               <CheckItem text="JavaScript Basics"/>
               <CheckItem text="Passion to Build Real Products"/>
-              <CheckItem text="Growth Mindset & Consistency"/>
               <div style={{marginTop:14,paddingTop:14,borderTop:`1px solid ${C.border}`}}>
                 <XItem text="Not for absolute beginners."/>
               </div>
@@ -347,7 +365,7 @@ export default function Home() {
               {icon:Briefcase,title:"Industry Workflow",      desc:"Git, CI/CD, code reviews — real team practices"},
             ].map(f => (
               <div key={f.title} style={cardStyle}>
-                <div style={{width:44,height:44,borderRadius:12,background:"rgba(166,255,0,0.08)",border:"1px solid rgba(166,255,0,0.15)",display:"flex",alignItems:"center",justifyContent:"center",marginBottom:16}}>
+                <div style={{width:44,height:44,borderRadius:12,background:"rgba(124,255,0,0.08)",border:"1px solid rgba(124,255,0,0.15)",display:"flex",alignItems:"center",justifyContent:"center",marginBottom:16}}>
                   <f.icon size={22} color={C.neon}/>
                 </div>
                 <h4 style={{color:"#fff",fontWeight:700,fontSize:14,marginBottom:6}}>{f.title}</h4>
@@ -370,11 +388,11 @@ export default function Home() {
           {/* Phase 1 */}
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(440px,1fr))",gap:20,marginBottom:20,position:"relative"}}>
             {/* Center divider with node — desktop only */}
-            <div style={{position:"absolute",left:"50%",top:0,bottom:0,width:2,background:"linear-gradient(to bottom,transparent,rgba(166,255,0,0.4) 20%,rgba(166,255,0,0.4) 80%,transparent)",transform:"translateX(-50%)"}} className="timeline-vert"/>
-            <div style={{position:"absolute",left:"50%",top:40,width:18,height:18,borderRadius:"50%",background:C.neon,border:"3px solid "+C.bg,boxShadow:"0 0 14px rgba(166,255,0,0.6)",transform:"translateX(-50%)",zIndex:1}} className="timeline-vert"/>
+            <div style={{position:"absolute",left:"50%",top:0,bottom:0,width:2,background:"linear-gradient(to bottom,transparent,rgba(124,255,0,0.4) 20%,rgba(124,255,0,0.4) 80%,transparent)",transform:"translateX(-50%)"}} className="timeline-vert"/>
+            <div style={{position:"absolute",left:"50%",top:40,width:18,height:18,borderRadius:"50%",background:C.neon,border:"3px solid "+C.bg,boxShadow:"0 0 14px rgba(124,255,0,0.6)",transform:"translateX(-50%)",zIndex:1}} className="timeline-vert"/>
 
             <div style={cardStyle}>
-              <span style={{display:"inline-flex",alignItems:"center",gap:6,padding:"4px 12px",borderRadius:100,background:"rgba(166,255,0,0.08)",border:"1px solid rgba(166,255,0,0.18)",color:C.neon,fontSize:10,fontWeight:700,letterSpacing:"0.08em",marginBottom:18}}>PHASE 1 • 15 DAYS</span>
+              <span style={{display:"inline-flex",alignItems:"center",gap:6,padding:"4px 12px",borderRadius:100,background:"rgba(124,255,0,0.08)",border:"1px solid rgba(124,255,0,0.18)",color:C.neon,fontSize:10,fontWeight:700,letterSpacing:"0.08em",marginBottom:18}}>PHASE 1 • 15 DAYS</span>
               <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
                 <Monitor size={26} color={C.neon}/>
                 <h3 style={{color:"#fff",fontWeight:800,fontSize:22}}>Frontend Engineering</h3>
@@ -394,8 +412,8 @@ export default function Home() {
 
           {/* Phase 2 */}
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(440px,1fr))",gap:20,position:"relative"}}>
-            <div style={{position:"absolute",left:"50%",top:0,bottom:0,width:2,background:"linear-gradient(to bottom,transparent,rgba(166,255,0,0.4) 20%,rgba(166,255,0,0.4) 80%,transparent)",transform:"translateX(-50%)"}} className="timeline-vert"/>
-            <div style={{position:"absolute",left:"50%",top:40,width:18,height:18,borderRadius:"50%",background:C.neon,border:"3px solid "+C.bg,boxShadow:"0 0 14px rgba(166,255,0,0.6)",transform:"translateX(-50%)",zIndex:1}} className="timeline-vert"/>
+            <div style={{position:"absolute",left:"50%",top:0,bottom:0,width:2,background:"linear-gradient(to bottom,transparent,rgba(124,255,0,0.4) 20%,rgba(124,255,0,0.4) 80%,transparent)",transform:"translateX(-50%)"}} className="timeline-vert"/>
+            <div style={{position:"absolute",left:"50%",top:40,width:18,height:18,borderRadius:"50%",background:C.neon,border:"3px solid "+C.bg,boxShadow:"0 0 14px rgba(124,255,0,0.6)",transform:"translateX(-50%)",zIndex:1}} className="timeline-vert"/>
 
             <div style={cardStyle}>
               <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:18}}>
@@ -406,7 +424,7 @@ export default function Home() {
             </div>
 
             <div style={cardStyle}>
-              <span style={{display:"inline-flex",alignItems:"center",gap:6,padding:"4px 12px",borderRadius:100,background:"rgba(166,255,0,0.08)",border:"1px solid rgba(166,255,0,0.18)",color:C.neon,fontSize:10,fontWeight:700,letterSpacing:"0.08em",marginBottom:18}}>PHASE 2 • 15 DAYS</span>
+              <span style={{display:"inline-flex",alignItems:"center",gap:6,padding:"4px 12px",borderRadius:100,background:"rgba(124,255,0,0.08)",border:"1px solid rgba(124,255,0,0.18)",color:C.neon,fontSize:10,fontWeight:700,letterSpacing:"0.08em",marginBottom:18}}>PHASE 2 • 15 DAYS</span>
               <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
                 <Server size={26} color={C.neon}/>
                 <h3 style={{color:"#fff",fontWeight:800,fontSize:22}}>Backend Engineering</h3>
@@ -429,7 +447,7 @@ export default function Home() {
             <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
               {projects.map(p=>(
                 <div key={p.title} style={{display:"flex",alignItems:"center",gap:12,padding:"14px 16px",background:C.card,border:`1px solid ${C.border}`,borderRadius:12}}>
-                  <div style={{width:36,height:36,borderRadius:10,background:"rgba(166,255,0,0.08)",border:"1px solid rgba(166,255,0,0.15)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                  <div style={{width:36,height:36,borderRadius:10,background:"rgba(124,255,0,0.08)",border:"1px solid rgba(124,255,0,0.15)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
                     <p.icon size={16} color={C.neon}/>
                   </div>
                   <span style={{color:"#e5e7eb",fontWeight:600,fontSize:13}}>{p.title}</span>
@@ -539,18 +557,44 @@ export default function Home() {
           </div>
 
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(220px,1fr))",gap:10}}>
-            {aiTools.map(t=>(
-              <div key={t.name} style={{display:"flex",alignItems:"center",gap:12,padding:"12px 18px",background:C.card,border:`1px solid ${C.border}`,borderRadius:12}}>
-                <div style={{width:36,height:36,borderRadius:10,background:`${t.color}18`,border:`1px solid ${t.color}33`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,color:t.color,fontWeight:800,fontSize:12}}>
-                  {t.name.slice(0,2).toUpperCase()}
+            {aiTools.map(t=>{
+              const slug = AI_ICON_SLUGS[t.name];
+              return (
+                <div key={t.name} style={{display:"flex",alignItems:"center",gap:12,padding:"12px 18px",background:C.card,border:`1px solid ${C.border}`,borderRadius:12}}>
+                  <div style={{width:36,height:36,borderRadius:10,background:`${t.color}18`,border:`1px solid ${t.color}33`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,overflow:"hidden"}}>
+                    {slug ? (
+                      <img src={`https://cdn.simpleicons.org/${slug}/${t.color.replace("#","")}`} alt={t.name} width={20} height={20} style={{objectFit:"contain"}} />
+                    ) : (
+                      <span style={{color:t.color,fontWeight:800,fontSize:12}}>{t.name.slice(0,2).toUpperCase()}</span>
+                    )}
+                  </div>
+                  <span style={{color:"#d1d5db",fontWeight:600,fontSize:14}}>{t.name}</span>
                 </div>
-                <span style={{color:"#d1d5db",fontWeight:600,fontSize:14}}>{t.name}</span>
-              </div>
-            ))}
-            <div style={{display:"flex",alignItems:"center",justifyContent:"center",padding:"12px 18px",background:"rgba(166,255,0,0.05)",border:"1px solid rgba(166,255,0,0.2)",borderRadius:12,cursor:"default"}}>
+              );
+            })}
+            <div style={{display:"flex",alignItems:"center",justifyContent:"center",padding:"12px 18px",background:"rgba(124,255,0,0.05)",border:"1px solid rgba(124,255,0,0.2)",borderRadius:12,cursor:"default"}}>
               <span style={{color:C.neon,fontWeight:700,fontSize:14}}>+ 13 more tools</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ══════════ CLOSING CTA ══════════ */}
+      <section style={{padding:"120px 24px",background:"#080808",textAlign:"center",position:"relative",overflow:"hidden"}}>
+        {/* Subtle orb */}
+        <div style={{position:"absolute",width:600,height:600,top:"50%",left:"50%",transform:"translate(-50%,-50%)",borderRadius:"50%",background:"radial-gradient(circle,rgba(124,255,0,0.05),transparent 70%)",filter:"blur(60px)",pointerEvents:"none"}}/>
+        <div style={{position:"relative",zIndex:1,maxWidth:800,margin:"0 auto"}}>
+          <h2 style={{fontSize:"clamp(32px,5vw,60px)",fontWeight:900,lineHeight:1.15,marginBottom:36}}>
+            <span style={{color:"#fff",display:"block"}}>Build Like an Engineer.</span>
+            <span style={{color:"#fff",display:"block"}}>Think Like an Architect.</span>
+            <span style={{display:"block",color:C.neon,textShadow:"0 0 12px rgba(124,255,0,0.7),0 0 40px rgba(124,255,0,0.4),0 0 80px rgba(124,255,0,0.15)"}}>Ship Like a Startup.</span>
+          </h2>
+          <a href="#curriculum" style={{display:"inline-flex",alignItems:"center",gap:10,padding:"16px 36px",background:C.neon,color:"#000",fontWeight:800,fontSize:17,borderRadius:12,textDecoration:"none",boxShadow:"0 0 30px rgba(124,255,0,0.3)",transition:"all 0.2s ease"}}>
+            Apply for Bootcamp <ArrowRight size={18} strokeWidth={3}/>
+          </a>
+          <p style={{color:C.textMuted,fontSize:13,marginTop:20}}>
+            Limited seats. Strict selection process.
+          </p>
         </div>
       </section>
 
