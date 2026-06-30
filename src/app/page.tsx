@@ -159,95 +159,36 @@ const ICONS: Record<string, (s?: number) => React.ReactNode> = {
 /* ─── AI TOOLS DATA with inline SVG icons ─── */
 type AiTool = { name: string; color: string; bg: string; icon: React.ReactNode };
 
-function AiIcon({ children, bg, color }: { children: React.ReactNode; bg: string; color: string }) {
-  return (
-    <div style={{ width: 56, height: 56, borderRadius: 16, background: bg, border: `1.5px solid ${color}40`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "transform 0.2s" }}>
-      {children}
-    </div>
-  );
-}
-
 const AI_TOOLS: AiTool[] = [
-  {
-    name: "ChatGPT",
-    color: "#10A37F", bg: "#0a2e25",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><path d="M22.28 9.79a5.8 5.8 0 00-.5-4.77 5.87 5.87 0 00-6.3-2.82A5.86 5.86 0 0011 .55a5.87 5.87 0 00-5.6 4.06 5.86 5.86 0 00-3.92 2.84 5.87 5.87 0 00.72 6.87 5.8 5.8 0 00.5 4.77 5.87 5.87 0 006.3 2.82A5.86 5.86 0 0013 21.45a5.87 5.87 0 005.6-4.07 5.86 5.86 0 003.92-2.84 5.87 5.87 0 00-.72-6.87l-.52.12zM13 20.07a4.35 4.35 0 01-2.79-1.01l.14-.08 4.63-2.67a.76.76 0 00.38-.66v-6.52l1.96 1.13a.07.07 0 01.04.05v5.4A4.38 4.38 0 0113 20.07zm-9.36-4.01a4.35 4.35 0 01-.52-2.93l.14.08 4.63 2.67a.77.77 0 00.77 0l5.65-3.26v2.26a.07.07 0 01-.03.06L9.7 17.6a4.38 4.38 0 01-6.06-1.54zm-1.22-9.56A4.35 4.35 0 014.8 4.87v5.47a.77.77 0 00.38.66l5.65 3.26-1.96 1.13a.07.07 0 01-.07 0l-4.63-2.68a4.38 4.38 0 01-1.75-5.21zm16.09 3.75l-5.65-3.26 1.96-1.13a.07.07 0 01.07 0l4.63 2.67a4.37 4.37 0 01-.68 7.88V10.9a.77.77 0 00-.38-.66l.05.01zm1.95-2.97l-.14-.08-4.63-2.67a.77.77 0 00-.77 0L9.27 8.79V6.53a.07.07 0 01.03-.06l4.63-2.67a4.37 4.37 0 016.53 4.52v-.04zm-12.26 4.03l-1.96-1.13a.07.07 0 01-.04-.05v-5.4a4.37 4.37 0 017.16-3.35l-.14.08-4.63 2.67a.76.76 0 00-.38.66l-.01 6.52zm1.07-2.29l2.52-1.45 2.52 1.45v2.9l-2.52 1.45-2.52-1.45v-2.9z" fill="#10A37F" /></svg>
-  },
-  {
-    name: "Claude",
-    color: "#D4A574", bg: "#2e1f0a",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><path d="M4.51 15.64L8.25 6.39a.5.5 0 01.93 0l.94 2.41 1.85-4.73a.5.5 0 01.93 0l3.6 9.56H14.1l-2.2-6.02-1.78 4.73.88 2.3h-1.4l-1.18-3.13-2.02 3.13H4.51zm10.5 0l1.72-4.73-1.34-3.6a.5.5 0 01.93-.35l4.2 11.2h-1.4l-.82-2.52H15z" fill="#D4A574" /></svg>
-  },
-  {
-    name: "Claude Code",
-    color: "#c8825a", bg: "#2e1505",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#c8825a" strokeWidth="1.8" /><path d="M7 9l3 3-3 3M13 15h4" stroke="#c8825a" strokeWidth="1.8" strokeLinecap="round" /></svg>
-  },
-  {
-    name: "Gemini",
-    color: "#4285F4", bg: "#0a1b3d",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><path d="M12 2C6.5 8 4 10 4 12s2.5 4 8 10c5.5-6 8-8 8-10S17.5 8 12 2z" fill="url(#ggemini)" /><defs><linearGradient id="ggemini" x1="4" y1="2" x2="20" y2="22" gradientUnits="userSpaceOnUse"><stop stopColor="#4285F4" /><stop offset="0.5" stopColor="#7B68EE" /><stop offset="1" stopColor="#4285F4" /></linearGradient></defs></svg>
-  },
-  {
-    name: "GitHub Copilot",
-    color: "#6CC644", bg: "#0d2209",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><circle cx="12" cy="11" r="5" stroke="#6CC644" strokeWidth="1.8" /><path d="M9 11a3 3 0 016 0M7.5 16c0 2.5 9 2.5 9 0" stroke="#6CC644" strokeWidth="1.8" strokeLinecap="round" /></svg>
-  },
-  {
-    name: "Vercel",
-    color: "#e5e7eb", bg: "#1a1a1a",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="#e5e7eb"><path d="M12 2L2 19.8h20L12 2z" /></svg>
-  },
-  {
-    name: "GitHub",
-    color: "#e5e7eb", bg: "#161b22",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="#e5e7eb"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" /></svg>
-  },
-  {
-    name: "Bolt",
-    color: "#8B5CF6", bg: "#1a0a2e",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" fill="#8B5CF6" /></svg>
-  },
-  {
-    name: "Lovable",
-    color: "#FF4081", bg: "#2e0a16",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><path d="M12 21C12 21 4 15 4 9a4 4 0 018-1.2A4 4 0 0120 9c0 6-8 12-8 12z" fill="#FF4081" /></svg>
-  },
-  {
-    name: "Zapier",
-    color: "#FF4A00", bg: "#2e0f00",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><path d="M13.37 10.63L21 3H3l7.63 7.63A5.38 5.38 0 0113.37 10.63z" fill="#FF4A00" /><path d="M10.63 13.37L3 21h18l-7.63-7.63A5.38 5.38 0 0110.63 13.37z" fill="#FF4A00" /><path d="M10.63 10.63L3 3v18l7.63-7.63A5.38 5.38 0 0110.63 10.63z" fill="#FF4A00" opacity=".5" /><path d="M13.37 13.37L21 21V3l-7.63 7.63A5.38 5.38 0 0113.37 13.37z" fill="#FF4A00" opacity=".5" /></svg>
-  },
-  {
-    name: "Make",
-    color: "#6D5CE7", bg: "#12082e",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="2.5" fill="#6D5CE7" /><circle cx="12" cy="12" r="2.5" fill="#6D5CE7" /><circle cx="19" cy="12" r="2.5" fill="#6D5CE7" /><path d="M7.5 12h2M14.5 12h2" stroke="#6D5CE7" strokeWidth="1.5" /></svg>
-  },
-  {
-    name: "n8n",
-    color: "#EA4B71", bg: "#2e0514",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><rect x="2" y="8" width="5" height="8" rx="2" fill="#EA4B71" /><rect x="17" y="8" width="5" height="8" rx="2" fill="#EA4B71" /><circle cx="12" cy="12" r="3" fill="#EA4B71" /><path d="M7 12h2M15 12h2" stroke="#EA4B71" strokeWidth="1.5" /></svg>
-  },
-  {
-    name: "DALL·E",
-    color: "#10A37F", bg: "#0a2e25",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="#10A37F" strokeWidth="1.5" /><circle cx="8.5" cy="8.5" r="2" fill="#10A37F" /><path d="M3 15l5-5 4 4 3-3 6 6" stroke="#10A37F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-  },
-  {
-    name: "Cursor",
-    color: "#7CFF00", bg: "#0e2200",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-7 1-4 7L5 3z" fill="#7CFF00" /></svg>
-  },
-  {
-    name: "Windsurf",
-    color: "#38BDF8", bg: "#061827",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><path d="M3 17C7 17 11 7 21 7" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" /><path d="M3 12C7 12 11 19 21 19" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" /></svg>
-  },
-  {
-    name: "Midjourney",
-    color: "#ffffff", bg: "#1a1a1a",
-    icon: <svg width={28} height={28} viewBox="0 0 24 24" fill="none"><path d="M3 19c2-5 4-9 9-14 5 5 7 9 9 14H3z" stroke="#fff" strokeWidth="1.5" strokeLinejoin="round" /></svg>
-  },
+  { name: "ChatGPT", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/chatgpt.png" alt="ChatGPT" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Open Claw", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/open_claw.png" alt="Open Claw" style={{ width: "90%", height: "90%", objectFit: "contain", borderRadius: 4 }} /> },
+  { name: "Claude Code", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/claude_code.png" alt="Claude Code" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Claude", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/claude.png" alt="Claude" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Gemini", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/gemini.png" alt="Gemini" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Make", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/make.png" alt="Make" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "n8n", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/n8n.png" alt="n8n" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "OpenAI", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/openai.png" alt="OpenAI" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Zapier", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/zapier.png" alt="Zapier" width={28} height={28} style={{ borderRadius: 4 }} /> },
+
+  { name: "Copilot", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/copilot.png" alt="Copilot" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "DALL-E", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/dall_e.png" alt="DALL-E" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Lovable", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/lovable.png" alt="Lovable" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "V0.dev", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/v0_dev.png" alt="V0.dev" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Bolt", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/bolt.png" alt="Bolt" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Replit", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/replit.png" alt="Replit" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Tempo", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/tempo.png" alt="Tempo" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Manus AI", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/manus_ai.png" alt="Manus AI" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Emergent AI", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/emergent_ai.png" alt="Emergent AI" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Cursor", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/cursor.png" alt="Cursor" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Windsurf", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/windsurf.png" alt="Windsurf" style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: 16 }} /> },
+  { name: "Antigravity", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/antigravity.png" alt="Antigravity" style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: 16 }} /> },
+
+  { name: "Perplexity", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/perplexity.png" alt="Perplexity" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Firebase Studio", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/firebase_studio.png" alt="Firebase Studio" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Rork", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/rork.png" alt="Rork" width={28} height={28} style={{ borderRadius: 4 }} /> },
+  { name: "Bubble", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/bubble.png" alt="Bubble" width={28} height={28} style={{ borderRadius: 4 }} /> },
+
+  { name: "Google Stitch", color: "#e5e7eb", bg: "#111111", icon: <img src="/icons/google_stitch.png" alt="Google Stitch" style={{ width: "90%", height: "90%", objectFit: "contain", borderRadius: 4 }} /> },
 ];
 
 /* ─── DATA ─── */
@@ -671,7 +612,7 @@ export default function Home() {
                 className="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-[#1e1e1e] bg-[#0e0e0e] hover:border-[#7CFF00] hover:bg-[#101810] hover:shadow-[0_0_28px_rgba(124,255,0,0.1)] transition-all duration-300 cursor-default"
               >
                 <div
-                  style={{ width: 60, height: 60, borderRadius: 18, background: t.bg, border: `1.5px solid ${t.color}50`, display: "flex", alignItems: "center", justifyContent: "center", transition: "transform 0.2s" }}
+                  style={{ width: 60, height: 60, borderRadius: 18, background: "#1a1a1a", border: "1.5px solid #2a2a2a", display: "flex", alignItems: "center", justifyContent: "center", transition: "transform 0.2s" }}
                   className="group-hover:scale-110"
                 >
                   {t.icon}
