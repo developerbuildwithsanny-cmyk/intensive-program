@@ -599,7 +599,7 @@ export default function Home() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <SectionTag icon={Zap} label="AI Stack" />
-            <h2 style={{ fontSize: "clamp(28px,4vw,50px)", fontWeight: 900, color: "#fff", marginBottom: 12, marginTop: 4 }}>Meet Your Future AI Stack</h2>
+            <h2 style={{ fontSize: "clamp(28px,4vw,50px)", fontWeight: 900, color: "#fff", marginBottom: 12, marginTop: 4 }}>Meet Your <span style={{ color: C.neon }}>Future AI Stack</span></h2>
             <p style={{ color: C.textSub, fontSize: 16, maxWidth: 520, margin: "0 auto" }}>
               Don&apos;t just write code — generate, debug, and scale with the best AI tools in the industry.
             </p>
